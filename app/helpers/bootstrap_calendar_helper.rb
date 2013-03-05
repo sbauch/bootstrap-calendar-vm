@@ -7,7 +7,7 @@ module BootstrapCalendarHelper
     HEADER = %w[Sunday Monday Tuesday Wednesday Thursday Friday Saturday]
     START_DAY = :sunday
 
-    delegate :content_tag, @content, to: :view
+    delegate :content_tag, :content, to: :view
 
     def calendar_div
       content_tag 'div', class: "calendar_grid" do
@@ -38,7 +38,7 @@ module BootstrapCalendarHelper
     def day_classes(day)
       classes = ['span1']
       classes << "today" if day == Date.today
-      classes << "all-approved" if @content[date].collect{|c| c.approved_internally?}.count(true) == @content[date].size 
+      classes << "all-approved" if content[date].collect{|c| c.approved_internally?}.count(true) == content[date].size 
       
       #classes << "notmonth" if day.month != date.month
       #classes << "month" if day.month == date.month
