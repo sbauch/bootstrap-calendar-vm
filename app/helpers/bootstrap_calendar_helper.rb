@@ -40,7 +40,9 @@ module BootstrapCalendarHelper
       classes << "today" if day == Date.today
       unless content[day].nil?
         if content[day].collect{|c| c.approved_internally?}.count(true) == content[day].size
-          classes << 'all-approved' 
+          classes << 'internal-approved' 
+        elsif content[day].collect{|c| c.client_approved?}.count(true) == content[day].size
+          classes << 'client-approved'
         else 
           classes << 'needs-approval'
         end
