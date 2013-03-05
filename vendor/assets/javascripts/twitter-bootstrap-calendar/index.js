@@ -10,10 +10,10 @@ function tbsCalendarSetMaxHeight(){
   });
 }
 
-$(document).on('page:load', function() {
-  tbsCalendarSetMaxHeight();
-});
+//$(document).on('page:load', function() {
+//  tbsCalendarSetMaxHeight();
+//});
 
-$(document).ready(function() {
-  tbsCalendarSetMaxHeight();
-});
+//$(document).ready(function() {
+//  tbsCalendarSetMaxHeight();
+//});
