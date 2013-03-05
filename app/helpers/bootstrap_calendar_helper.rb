@@ -38,8 +38,9 @@ module BootstrapCalendarHelper
     def day_classes(day)
       classes = ['span1']
       classes << "today" if day == Date.today
-      classes << "all-approved" if content[day].collect{|c| c.approved_internally?}.count(true) == content[day].size 
-      
+      unless content[day].nil?
+        classes << "all-approved" if content[day].collect{|c| c.approved_internally?}.count(true) == content[day].size 
+      end
       #classes << "notmonth" if day.month != date.month
       #classes << "month" if day.month == date.month
       #if day < Date.today
