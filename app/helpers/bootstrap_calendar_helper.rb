@@ -32,7 +32,7 @@ module BootstrapCalendarHelper
     end
 
     def day_cell(day)
-      content_tag :div, view.capture(day, &callback), class: day_classes(day)
+      content_tag :div, view.capture(day, &callback), class: day_classes(day), style: 'position:absolute;'
     end
 
     def day_classes(day)
