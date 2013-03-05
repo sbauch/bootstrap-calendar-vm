@@ -39,8 +39,11 @@ module BootstrapCalendarHelper
       classes = ['span1']
       classes << "today" if day == Date.today
       classes << "notmonth" if day.month != date.month
-      classes << "month" if day.month == date.month & day >= date
-      classes << "notmonth" if day < Date.today
+      classes << "month" if day.month == date.month
+      if day < Date.today
+          classes << "notmonth" 
+          classes.reject{|c| c == 'month'}
+      end    
       classes.empty? ? nil : classes.join(" ")
     end
 
