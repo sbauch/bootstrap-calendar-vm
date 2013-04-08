@@ -1,5 +1,5 @@
 function tbsCalendarSetMaxHeight(){
-  var maxHeight = 200;
+  var maxHeight = 150;
 
 //  $('.calendar_grid .week .span1').each(function() {
 //    maxHeight = maxHeight > $(this).height() ? maxHeight : $(this).height();

@@ -1,9 +1,9 @@
 module BootstrapCalendarHelper
-  def bootstrap_calendar(date = Date.today, content, &block)
-    BootstrapCalendar.new(self, date, content, block).calendar_div
+  def bootstrap_calendar(date = Date.today, &block)
+    BootstrapCalendar.new(self, date, block).calendar_div
   end
 
-  BootstrapCalendar = Struct.new(:view, :date, :content, :callback) do
+  BootstrapCalendar = Struct.new(:view, :date, :callback) do
     HEADER = %w[Sunday Monday Tuesday Wednesday Thursday Friday Saturday]
     START_DAY = :sunday
 
@@ -32,24 +32,14 @@ module BootstrapCalendarHelper
     end
 
     def day_cell(day)
-      content_tag :div, view.capture(day, &callback), class: day_classes(day), style: 'position:relative;'
+      content_tag :div, view.capture(day, &callback), class: day_classes(day), style: "position:relative;"
     end
 
     def day_classes(day)
       classes = ['span1']
       classes << "today" if day == Date.today
-      unless content[day].nil?
-        if content[day].collect{|c| c.client_approved?}.count(true) == content[day].size
-          classes << 'client-approved'
-        elsif content[day].collect{|c| c.approved_internally?}.count(true) == content[day].size
-          classes << 'internal-approved' 
-        else 
-          classes << 'needs-approval'
-        end
-      end
-      classes << "notmonth" if day < Date.today
-      #    classes = classes.reject{|c| c == 'month'}
-      #end    
+      classes << "notmonth" if day.month != date.month
+      classes << "month" if day.month == date.month
       classes.empty? ? nil : classes.join(" ")
     end
 
